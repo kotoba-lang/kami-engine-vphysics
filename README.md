@@ -1,6 +1,6 @@
-# vphysics-clj
+# kami-engine-vphysics
 
-[![CI](https://github.com/kotoba-lang/vphysics/actions/workflows/ci.yml/badge.svg)](https://github.com/kotoba-lang/vphysics/actions/workflows/ci.yml)
+[![CI](https://github.com/kotoba-lang/kami-engine-vphysics/actions/workflows/ci.yml/badge.svg)](https://github.com/kotoba-lang/kami-engine-vphysics/actions/workflows/ci.yml)
 
 Shared vehicle-physics primitives — road load, SI constants, aero force, range/energy sensitivity. **Purpose: domain physics math.** Used by vehicle-design-actor (energy sizing) and aero-clj (range loop).
 
