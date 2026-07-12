@@ -3,7 +3,9 @@
  ;; SI constants, aero force, range/energy sensitivity. Purpose: DOMAIN PHYSICS
  ;; MATH only (no datoms, no solver dispatch). Used by vehicle-design-actor
  ;; (energy sizing) and aero-clj (range loop), and the CAE seeds.
- :deps {}
+ :deps {io.github.kotoba-lang/physics
+        {:git/url "https://github.com/kotoba-lang/physics.git"
+         :git/sha "30278f1f54ecf1de1f5da5242cae2bd9cc71aa38"}}
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
