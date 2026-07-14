@@ -5,7 +5,7 @@
  ;; (energy sizing) and aero-clj (range loop), and the CAE seeds.
  :deps {io.github.kotoba-lang/physics
         {:git/url "https://github.com/kotoba-lang/physics.git"
-         :git/sha "30278f1f54ecf1de1f5da5242cae2bd9cc71aa38"}}
+         :git/sha "3081560a4327319d9916a3c1c53471223462c0c3"}}
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner

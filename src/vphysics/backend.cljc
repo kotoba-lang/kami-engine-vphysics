@@ -1,6 +1,7 @@
 (ns vphysics.backend
   "Reduced-order vehicle backend for the unified Kotoba physics contract."
   (:require [kotoba.physics.contract :as contract]
+            [kotoba.physics.vehicle :as shared]
             [vphysics.core :as vehicle]))
 
 (def backend-id :kotoba/vehicle-road-load-rom)
@@ -26,6 +27,7 @@
   contract/PhysicsBackend
   (descriptor [_] {:id backend-id :version 1 :fidelity :reduced-order
                    :units contract/si-units
+                   :document-kinds #{:vehicle}
                    :capabilities #{:vehicle-road-load :aerodynamic-drag :rolling-resistance
                                    :auxiliary-energy :range-sensitivity}})
   (step [_ _ _]
@@ -46,3 +48,16 @@
         :evidence []}))))
 
 (def backend (->VehicleRoadLoadBackend))
+
+(defn case-for-document
+  "Create a reduced-order solve case from the same vehicle document used by
+  realtime/Studio consumers. Explicit overrides remain required when the
+  authored spec does not contain a ROM input."
+  [case-id doc overrides]
+  (when-not (shared/document? doc) (throw (ex-info "invalid vehicle document" {:document doc})))
+  (let [controls (merge (:vehicle/spec doc) overrides)]
+    (contract/make-case
+     {:id case-id :scene (shared/scene (keyword (str (name case-id) "-scene"))
+                                      [(shared/entity :vehicle doc)])
+      :domain :vehicle :backend-kind backend-id :fidelity :reduced-order
+      :controls controls :provenance {:vehicle/id (:vehicle/id doc)}})))
