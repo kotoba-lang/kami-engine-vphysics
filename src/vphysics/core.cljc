@@ -5,7 +5,7 @@
 
   Purpose: DOMAIN PHYSICS MATH only. SI internally (J, kg, m, W, N). No datoms,
   no solver dispatch — those are datom-clj and cae-solver-clj."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ─────────────────────────── SI constants ───────────────────────────
 
